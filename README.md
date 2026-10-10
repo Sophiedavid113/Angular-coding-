@@ -1,107 +1,76 @@
-                     Http method 
-from django.http import HttpResponse
-
-def hello_world(request):
-    return HttpResponse("Hello World")
+Angular 
+ek framework hai jo large aur interactive web applications banane ke liye use hota hai.
 ....................................................................
-                       Url and routing
-from django.urls import path
-from .views import hello
+           Component in angular 
+   NavbarComponent
+   BannerComponent
+   ProductComponent
+   AboutComponent
+   FooterComponent.
 
-urlpatterns = [
-    path("hello/", hello),
-]
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrl: './navbar.component.css'
+})
+export class NavbarComponent {
+
+}
 ....................................................................
-                         Templates
-from django.shortcuts import render
+   Angular installation and project structure and cli 
 
-def home(request):
-    return render(request, "home.html", {"name": "Ali"})
+Cli
+Angular CLI = Angular project کو command line سے بنانے اور manage کرنے کا tool۔
 ....................................................................
-                            Model
-from django.shortcuts import render
-from .models import Student
+*Ng for 
+HTML میں بار بار دکھانے کے لیے ہوتا ہے۔
+<h2>Students</h2>
 
-def home(request):
-    student = Student.objects.first()
-    return render(request, "home.html", {"student": student})
+<ul>
+  <li *ngFor="let student of students">
+    {{ student }}
+  </li>
+</ul>
 ....................................................................
-               E-commerce model
- from django.db import models
-
-class Product(models.Model):
-    name = models.CharField(max_length=100)
-    price = models.IntegerField()
-    description = models.TextField()
-    image = models.ImageField(upload_to="products/")
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.name
+      {{        }}
+اس کا کام TypeScript کا data HTML میں display کرنا ہے۔
+<h1>Hello {{ name }}</h1>
+<p>Age: {{ age }}</p>
 ....................................................................
-       Rest API front-end and back-end 
-             back-end 
-   # views.py
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
+Custom Directives
+ کیا ہے؟مثلاً ہم چاہتے ہیں کہ mouse لے جانے پر text کا background تبدیل ہو جائے۔
+import { Directive, ElementRef } from '@angular/core';
 
-@api_view(["GET"])
-def products(request):
-    data = [
-        {
-            "name": "Laptop",
-            "price": 50000,
-            "image": "laptop.jpg"
-        },
-        {
-            "name": "Camera",
-            "price": 30000,
-            "image": "camera.jpg"
-        }
-    ]
+@Directive({
+  selector: '[appHighlight]'
+})
+export class HighlightDirective {
 
-    return Response(data)
+  constructor(private el: ElementRef) {
+    this.el.nativeElement.style.backgroundColor = 'yellow';
+  }
+
+}
 ....................................................................
-                                 front-end 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Products</title>
-</head>
-
-<body>
-
-<h1>Products</h1>
-
-<div id="products"></div>
-
-<script>
-fetch("http://127.0.0.1:8000/api/products/")
-    .then(response => response.json())
-    .then(data => {
-
-        data.forEach(product => {
-
-            document.getElementById("products").innerHTML += `
-                <div>
-                    <img src="${product.image}" width="200">
-
-                    <h2>${product.name}</h2>
-
-                    <p>Price: ${product.price}</p>
-                </div>
-            `;
-
-        });
-
-    });
-</script>
-
-</body>
-</html>
+on click event emit Todo app
+....................................................................
+*Ng if 
+         <p *ngIf="condition">
+  Hello
+</p>
+اگر condition true ہو → <p> نظر آئے گا
+اگر condition false ہو → <p> نظر نہیں آئے گا۔
 ....................................................................
 
 
 
 
 
+
+
+
+
+
+                    
